@@ -1,2 +1,631 @@
 <h1>Welcome to SvelteKit</h1>
 <p>Visit <a href="https://svelte.dev/docs/kit">svelte.dev/docs/kit</a> to read the documentation</p>
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Les gîtes de la Robertie</title>
+  <style>
+    :root {
+      --bg: #f7f2e9;
+      --bg-soft: #fcf8f1;
+      --text: #234a7a;
+      --text-soft: #4a6281;
+      --green: #7bbf59;
+      --green-dark: #5e9f45;
+      --blue: #2f67a9;
+      --blue-dark: #1f4f86;
+      --card: rgba(255,255,255,0.72);
+      --border: rgba(47, 103, 169, 0.12);
+      --shadow: 0 18px 45px rgba(34, 69, 109, 0.12);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: "Georgia", "Times New Roman", serif;
+      background:
+        radial-gradient(circle at top left, rgba(123, 191, 89, 0.14), transparent 30%),
+        radial-gradient(circle at top right, rgba(47, 103, 169, 0.12), transparent 28%),
+        linear-gradient(180deg, #faf6ef 0%, var(--bg) 100%);
+      color: var(--text);
+      min-height: 100vh;
+      line-height: 1.5;
+      overflow-x: hidden;
+    }
+
+    .page {
+      position: relative;
+      isolation: isolate;
+    }
+
+    .page::before,
+    .page::after {
+      content: "";
+      position: absolute;
+      border-radius: 999px;
+      filter: blur(6px);
+      z-index: -1;
+      opacity: 0.7;
+    }
+
+    .page::before {
+      width: 340px;
+      height: 340px;
+      background: rgba(123, 191, 89, 0.14);
+      top: 80px;
+      left: -100px;
+    }
+
+    .page::after {
+      width: 280px;
+      height: 280px;
+      background: rgba(47, 103, 169, 0.12);
+      top: 40px;
+      right: -80px;
+    }
+
+    header {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 26px 24px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .brand-mark {
+      width: 52px;
+      height: 52px;
+      border-radius: 18px;
+      background: linear-gradient(135deg, var(--blue), var(--green));
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .brand-mark::before {
+      content: "";
+      position: absolute;
+      width: 18px;
+      height: 18px;
+      background: rgba(255,255,255,0.95);
+      left: 17px;
+      bottom: 13px;
+      clip-path: polygon(0 100%, 50% 55%, 100% 100%, 100% 35%, 50% 0, 0 35%);
+    }
+
+    .brand-text {
+      font-size: 1.1rem;
+      color: var(--blue-dark);
+      letter-spacing: 0.2px;
+    }
+
+    nav {
+      display: flex;
+      gap: 24px;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: var(--text-soft);
+      font-size: 0.98rem;
+      transition: 0.25s ease;
+    }
+
+    nav a:hover {
+      color: var(--green-dark);
+    }
+
+    .hero {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 64px 24px 36px;
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 34px;
+      align-items: center;
+    }
+
+    .hero h1 {
+      font-size: clamp(3rem, 5vw, 5.1rem);
+      line-height: 0.98;
+      font-weight: 500;
+      color: var(--blue-dark);
+      margin-bottom: 18px;
+    }
+
+    .hero p {
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--text-soft);
+      font-size: 1.08rem;
+      max-width: 560px;
+      margin-bottom: 28px;
+    }
+
+    .actions {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 14px 22px;
+      border-radius: 999px;
+      text-decoration: none;
+      font-family: Arial, Helvetica, sans-serif;
+      font-weight: 600;
+      transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+      box-shadow: var(--shadow);
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--blue), var(--green));
+      color: white;
+    }
+
+    .btn-secondary {
+      background: rgba(255,255,255,0.75);
+      color: var(--blue-dark);
+      border: 1px solid rgba(47, 103, 169, 0.12);
+    }
+
+    .visual {
+      position: relative;
+      min-height: 520px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .frame {
+      width: min(100%, 500px);
+      background: rgba(255,255,255,0.58);
+      border: 1px solid rgba(255,255,255,0.7);
+      backdrop-filter: blur(14px);
+      border-radius: 34px;
+      padding: 26px;
+      box-shadow: 0 24px 60px rgba(37, 74, 122, 0.14);
+      position: relative;
+    }
+
+    .scene {
+      aspect-ratio: 4 / 4.2;
+      background: linear-gradient(180deg, #eef6ff 0%, #f8f5ed 100%);
+      border-radius: 28px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: inset 0 0 0 1px rgba(47, 103, 169, 0.08);
+    }
+
+    .sun {
+      position: absolute;
+      width: 86px;
+      height: 86px;
+      border-radius: 50%;
+      background: rgba(255, 231, 166, 0.9);
+      top: 42px;
+      right: 58px;
+      box-shadow: 0 0 40px rgba(255, 231, 166, 0.45);
+    }
+
+    .hill {
+      position: absolute;
+      bottom: 0;
+      width: 120%;
+      left: -10%;
+      height: 36%;
+      background: linear-gradient(180deg, #8cd066 0%, #69b84a 100%);
+      border-radius: 50% 50% 0 0;
+    }
+
+    .hill.back {
+      height: 28%;
+      bottom: 16%;
+      background: linear-gradient(180deg, #95d678 0%, #77c95b 100%);
+      opacity: 0.78;
+    }
+
+    .house {
+      position: absolute;
+      left: 25%;
+      bottom: 23%;
+      width: 42%;
+      height: 34%;
+      background: #f3e6c1;
+      border-radius: 8px;
+      box-shadow: 0 14px 24px rgba(0,0,0,0.08);
+    }
+
+    .roof {
+      position: absolute;
+      left: 21%;
+      bottom: 50%;
+      width: 50%;
+      height: 16%;
+      background: var(--blue-dark);
+      transform: skew(-28deg);
+      border-radius: 10px 10px 4px 4px;
+    }
+
+    .door {
+      position: absolute;
+      width: 16%;
+      height: 22%;
+      background: #ddc393;
+      left: 48%;
+      bottom: 23%;
+      border-radius: 14px 14px 0 0;
+    }
+
+    .window {
+      position: absolute;
+      width: 10%;
+      height: 13%;
+      background: #4f94db;
+      border: 4px solid rgba(255,255,255,0.65);
+      box-shadow: inset 0 0 0 2px rgba(47, 103, 169, 0.25);
+    }
+
+    .window.left {
+      left: 31%;
+      bottom: 33%;
+    }
+
+    .window.right {
+      left: 31%;
+      bottom: 50%;
+    }
+
+    .tree-trunk {
+      position: absolute;
+      width: 8%;
+      height: 28%;
+      right: 24%;
+      bottom: 25%;
+      background: var(--blue-dark);
+      border-radius: 10px;
+    }
+
+    .tree-crown {
+      position: absolute;
+      width: 34%;
+      height: 32%;
+      right: 12%;
+      bottom: 43%;
+      background: radial-gradient(circle at 30% 30%, #b8ef7b 0%, #7ecb58 58%, #54a641 100%);
+      border-radius: 46% 54% 50% 50%;
+      filter: saturate(1.1);
+    }
+
+    .tree-crown::before,
+    .tree-crown::after {
+      content: "";
+      position: absolute;
+      background: inherit;
+      border-radius: 50%;
+    }
+
+    .tree-crown::before {
+      width: 70%;
+      height: 70%;
+      left: -14%;
+      top: 12%;
+    }
+
+    .tree-crown::after {
+      width: 62%;
+      height: 62%;
+      right: -10%;
+      top: 5%;
+    }
+
+    .fence {
+      position: absolute;
+      left: 15%;
+      bottom: 18%;
+      width: 68%;
+      height: 12%;
+      border-bottom: 6px solid rgba(255,255,255,0.92);
+      transform: skewX(-18deg);
+      opacity: 0.96;
+    }
+
+    .fence::before,
+    .fence::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(
+        to right,
+        transparent 0 12%,
+        rgba(255,255,255,0.95) 12% 16%,
+        transparent 16% 28%
+      );
+      mask: linear-gradient(to bottom, transparent 0 20%, black 20% 100%);
+    }
+
+    .badge {
+      position: absolute;
+      bottom: -20px;
+      left: 24px;
+      background: white;
+      color: var(--blue-dark);
+      padding: 12px 18px;
+      border-radius: 18px;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 0.92rem;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border);
+    }
+
+    .section {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 22px 24px 80px;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 24px;
+    }
+
+    .section-title h2 {
+      font-size: clamp(2rem, 3vw, 3rem);
+      font-weight: 500;
+      color: var(--blue-dark);
+      margin-bottom: 8px;
+    }
+
+    .section-title p {
+      max-width: 680px;
+      margin: 0 auto;
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--text-soft);
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 22px;
+      margin-top: 30px;
+    }
+
+    .card {
+      background: var(--card);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,0.8);
+      border-radius: 28px;
+      padding: 26px;
+      box-shadow: var(--shadow);
+    }
+
+    .icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, rgba(47, 103, 169, 0.14), rgba(123, 191, 89, 0.2));
+      display: grid;
+      place-items: center;
+      margin-bottom: 16px;
+      font-size: 1.4rem;
+    }
+
+    .card h3 {
+      font-size: 1.45rem;
+      color: var(--blue-dark);
+      font-weight: 500;
+      margin-bottom: 10px;
+    }
+
+    .card p {
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--text-soft);
+    }
+
+    .cta {
+      margin-top: 34px;
+      background: linear-gradient(135deg, rgba(47,103,169,0.9), rgba(123,191,89,0.88));
+      border-radius: 32px;
+      padding: 34px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      box-shadow: 0 24px 56px rgba(43, 87, 135, 0.2);
+    }
+
+    .cta h3 {
+      color: white;
+      font-size: clamp(1.7rem, 2.6vw, 2.4rem);
+      font-weight: 500;
+      margin-bottom: 8px;
+    }
+
+    .cta p {
+      color: rgba(255,255,255,0.9);
+      font-family: Arial, Helvetica, sans-serif;
+      max-width: 700px;
+    }
+
+    .cta .btn-secondary {
+      background: rgba(255,255,255,0.92);
+      border: none;
+    }
+
+    footer {
+      text-align: center;
+      padding: 0 24px 34px;
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--text-soft);
+      font-size: 0.94rem;
+    }
+
+    @media (max-width: 980px) {
+      .hero {
+        grid-template-columns: 1fr;
+        padding-top: 40px;
+      }
+
+      .visual {
+        min-height: auto;
+      }
+
+      .cards {
+        grid-template-columns: 1fr;
+      }
+
+      .cta {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+
+    @media (max-width: 700px) {
+      header {
+        flex-direction: column;
+        gap: 18px;
+      }
+
+      nav {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .hero h1 {
+        line-height: 1.04;
+      }
+
+      .frame {
+        padding: 16px;
+        border-radius: 24px;
+      }
+
+      .scene {
+        border-radius: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header>
+      <div class="brand">
+        <div class="brand-mark"></div>
+        <div class="brand-text">Les gîtes de la Robertie</div>
+      </div>
+      <nav>
+        <a href="#">Home</a>
+        <a href="#">The Gîtes</a>
+        <a href="#">Experience</a>
+        <a href="#">Gallery</a>
+        <a href="#">Contact</a>
+      </nav>
+    </header>
+
+    <section class="hero">
+      <div>
+        <h1>Calm stays in a warm countryside setting</h1>
+        <p>
+          A soft, inviting website concept inspired by the logo: elegant blue tones, fresh natural greens,
+          and a warmer off-white background to create a welcoming and relaxed atmosphere.
+        </p>
+        <div class="actions">
+          <a href="#" class="btn btn-primary">Book a stay</a>
+          <a href="#" class="btn btn-secondary">Discover the place</a>
+        </div>
+      </div>
+
+      <div class="visual">
+        <div class="frame">
+          <div class="scene">
+            <div class="sun"></div>
+            <div class="hill back"></div>
+            <div class="hill"></div>
+            <div class="roof"></div>
+            <div class="house"></div>
+            <div class="door"></div>
+            <div class="window left"></div>
+            <div class="window right"></div>
+            <div class="tree-trunk"></div>
+            <div class="tree-crown"></div>
+            <div class="fence"></div>
+          </div>
+          <div class="badge">Warm, natural, elegant</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-title">
+        <h2>A welcoming visual direction</h2>
+        <p>
+          This concept keeps the countryside feeling of the logo while making the page feel modern, soft,
+          and trustworthy.
+        </p>
+      </div>
+
+      <div class="cards">
+        <article class="card">
+          <div class="icon">🌿</div>
+          <h3>Fresh & natural</h3>
+          <p>
+            The greens help the brand feel peaceful, outdoorsy, and connected to nature.
+          </p>
+        </article>
+
+        <article class="card">
+          <div class="icon">💙</div>
+          <h3>Elegant blue tones</h3>
+          <p>
+            The blue keeps the identity refined and reliable while pairing well with the logo typography.
+          </p>
+        </article>
+
+        <article class="card">
+          <div class="icon">☀️</div>
+          <h3>Warmer than white</h3>
+          <p>
+            The creamy background makes everything feel more inviting than a plain white page.
+          </p>
+        </article>
+      </div>
+
+      <div class="cta">
+        <div>
+          <h3>Made as a quick inspiration page</h3>
+          <p>
+            This can easily be turned into a full website style with real photos, your logo, booking blocks,
+            room cards, and a French countryside luxury feel.
+          </p>
+        </div>
+        <a href="#" class="btn btn-secondary">View style direction</a>
+      </div>
+    </section>
+
+    <footer>
+      Les gîtes de la Robertie — concept inspiration page
+    </footer>
+  </div>
+</body>
+</html> -->
