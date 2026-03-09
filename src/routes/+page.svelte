@@ -14,7 +14,7 @@
         </div>
     </div>
     <div class="hero__right">
-        <div class="hero__right__image-container">
+        <div class="hero__right__image-container"> 
             <img
                 class="hero__right__image-container__image"
                 src="{base}/les-gites-de-la-robertie.png" 
